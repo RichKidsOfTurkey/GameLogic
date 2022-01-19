@@ -1,0 +1,112 @@
+# common 50%
+# uncommon 30%
+# rare 15%
+# legendary 5%
+
+# stats:
+# 1. score
+# 2. rebound
+# 3. block
+# 4. steal
+# 5. assist
+
+#       score: 10 points + by chance of 5% +5 points ( for example)
+#       rebound: gives positive aura to team, increases teams score chances
+#       block: gives negative aura to enemy team, decreases enemy teams score chances
+#       steal: gives negative aura to enemy team, decreases enemy teams assist chances
+#       assist: gives positive aura to team, increases teams score chances
+
+# player type 1 (point guard):
+#   score:      1.5-27.6 points
+#   rebound:    1.2%-4.3%
+#   block:      0.0%-0.9%
+#   steal:      0.2%-2.0%
+#   assist:     0.8%-10.0%
+
+# player type 2 (shooting guard):
+#   score:      2.3-25.7
+#   rebound:    1.5%-7.3%
+#   block:      0.0%-1.1%
+#   steal:      0.2%-1.9%
+#   assist:     0.5%-7.1%
+
+# player type 3 (small forward):
+#   score:      3.7-29.1
+#   rebound:    1.9%-8.5%
+#   block:      0.1%-1.1%
+#   steal:      0.3%-1.7%
+#   assist:     0.4%-6.6%
+
+# player type 4 (power forward):
+#   score:      4.5-29.7
+#   rebound:    2.0%-11.5%
+#   block:      0.0%-2.1%
+#   steal:      0.3%-1.5%
+#   assist:     0.4%-7.4%
+
+# player type 5 (center):
+#   score:      3.6-27.0
+#   rebound:    2.2%-15.1%
+#   block:      0.2%-2.8%
+#   steal:      0.2%-1.5%
+#   assist:     0.3%-7.0%
+
+# common 50%
+# uncommon 30%
+# rare 15%
+# legendary 5%
+
+# HOW TO CALCULATE = (average * chance prob) + average
+# [((1.5 + 8.55)/2) * 50% + ((1.5 + 8.55)/2)]
+
+# score: 1.5 to 29.7
+#       common:     1.50 to 8.55     by chance 50% + 05.00
+#       uncommon:   8.55 to 15.60    by chance 30% + 15.70
+#       rare:       15.60 to 22.65   by chance 15% + 21.99
+#       legendary:  22.65 to 29.70   by chance 5%  + 27.48
+
+# rebound: 0.0 to 15.1
+#       common:     0.00 to 3.78
+#       uncommon:   3.78 to 7.55
+#       rare:       7.55 to 11.33
+#       legendary:  11.33 to 15.10
+
+# block: 0.0 to 2.8
+#       common:     0.00 to 0.65
+#       uncommon:   0.70 to 1.40
+#       rare:       1.40 to 2.10
+#       legendary:  2.10 to 2.80
+
+# steal: 0.2 to 2.0
+#       common:     0.00 to 0.65
+#       uncommon:   0.65 to 1.10
+#       rare:       1.10 to 1.55
+#       legendary:  1.55 to 2.00
+
+# assist: 0.3 to 10.0
+#       common:     0.30 to 2.73
+#       uncommon:   2.73 to 5.15
+#       rare:       5.15 to 7.58
+#       legendary:  7.58 to 10.00
+
+# teams contains 3 player
+# 1000 packs (one pack contains 4 players)
+# 4000 players (
+# 10 - 20 - 30 - 40
+# 400 - 800 - 1200 - 1600
+
+# tournament
+# score board
+
+# first season legacy prize pool
+# next seasons will be entry fee for matches
+
+# backend flask
+
+# roadmap
+#       1. stats page
+#       2. tokenomics
+#       3.
+
+
+# player_gen --> indexing_players --> teammaking --> matchmaking_team_selection --> matchmaking
