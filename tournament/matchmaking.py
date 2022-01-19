@@ -35,4 +35,6 @@ class Tournament:
         return out
 
 
-
+    @staticmethod
+    def lobby():
+        pass
