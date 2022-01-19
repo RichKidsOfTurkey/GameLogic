@@ -1,5 +1,5 @@
 import random
-from math_utils import round_half_up
+from gen_player.math_utils import round_half_up
 
 
 def rarity_detector(prob):

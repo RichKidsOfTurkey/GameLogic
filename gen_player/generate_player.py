@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import names
-from player_utils import rarity_detector, index_config,generate_assist, generate_score, generate_rebound, generate_block, generate_steal
-from math_utils import percentage_chance
+from gen_player.player_utils import rarity_detector, index_config,generate_assist, generate_score, generate_rebound, generate_block, generate_steal
+from gen_player.math_utils import percentage_chance
 # 0.0 to 0.05 legendary
 # 0.05 to 0.20 rare
 # 0.20 to 0.50 uncommon
@@ -10,6 +10,7 @@ from math_utils import percentage_chance
 
 class PlayerGenerator:
     def __init__(self):
+        # initializing probabilities for later use in player_generator()
         self.score_prob = percentage_chance()
         self.rebound_prob = percentage_chance()
         self.block_prob = percentage_chance()
@@ -127,9 +128,10 @@ class PlayerGenerator:
 
         return all_players
 
-anan = PlayerGenerator()
-baban = anan.player_generator(1600, 1200, 800, 2)
-print(baban)
+
+# test = PlayerGenerator()
+# test_out = test.player_generator(1600, 1200, 800, 2)
+# print(test_out)
 
 
 
