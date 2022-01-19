@@ -7,7 +7,7 @@
 * [Setup](#setup)
     
 
-###Ground Rules and General Notes
+### Ground Rules and General Notes
 * stats:
      1. score
      2. rebound
@@ -56,7 +56,7 @@
 * 1000 packs (one pack contains 4 players)
 * 4000 players (400 - 800 - 1200 - 1600)
 
-###Classes:
+### Classes:
 
 gen_player
 * It contains generate_player() function you can give how many players and in 
