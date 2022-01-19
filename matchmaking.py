@@ -3,7 +3,7 @@ import random
 from itertools import zip_longest
 
 
-with open('index_match_teams.json', 'r') as jsonfile:
+with open('storage/index_match_teams.json', 'r') as jsonfile:
     match_teams = json.load(jsonfile)
 
 

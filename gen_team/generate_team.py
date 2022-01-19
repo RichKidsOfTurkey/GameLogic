@@ -1,6 +1,4 @@
-import json
 import random
-from gen_player.generate_player import PlayerGenerator
 from gen_team.team_utils import pick_top_players
 
 
@@ -49,22 +47,15 @@ class TeamMaking:
             team_rarity_average =(team[0]['overall rarity'][0] + team[1]['overall rarity'][0] + team[2]['overall rarity'][0]) / 3
             temp_out = {
                 'team_index': team_index,
-                'team_overall_rarity_average': team_rarity_average,
-                'team_score': team_score,
-                'team_rebound': team_rebound,
-                'team_block': team_block,
-                'team_steal': team_steal,
-                'team_assist': team_assist,
+                'team_overall_rarity_average': round(team_rarity_average, 3),
+                'team_score': round(team_score, 2),
+                'team_rebound': round(team_rebound, 2),
+                'team_block': round(team_block, 2),
+                'team_steal': round(team_steal, 2),
+                'team_assist': round(team_assist, 2),
                 'team': team
             }
             indexed_teams.append(temp_out)
             team_index = team_index + 1
 
         return indexed_teams
-
-
-# all_players = PlayerGenerator.player_generator(10, 10, 10, 2)
-# teams = TeamMaking.generate_teams(all_players)
-
-# print(teams)
-# print(TeamMaking.calculate_powers(teams))

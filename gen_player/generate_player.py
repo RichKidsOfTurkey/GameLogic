@@ -127,13 +127,3 @@ class PlayerGenerator:
             index = index + 1
 
         return all_players
-
-
-# test = PlayerGenerator()
-# test_out = test.player_generator(1600, 1200, 800, 2)
-# print(test_out)
-
-
-
-
-
