@@ -3,8 +3,7 @@ from gen_team.generate_team import TeamMaking
 from tournament.matchmaking import Tournament
 
 
-
-all_players = PlayerGenerator.player_generator(10, 10, 10, 2)
+all_players = PlayerGenerator.player_generator(10, 10, 10, 10)
 teams = TeamMaking.generate_teams(all_players)
 
 power_calculated_teams = TeamMaking.calculate_powers(teams)
