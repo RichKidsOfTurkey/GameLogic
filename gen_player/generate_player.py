@@ -1,5 +1,7 @@
 from tqdm import tqdm
 import names
+import time
+
 from gen_player.player_utils import rarity_detector, index_config,generate_assist, generate_score, generate_rebound, generate_block, generate_steal
 from gen_player.math_utils import percentage_chance
 # 0.0 to 0.05 legendary
@@ -50,12 +52,16 @@ class PlayerGenerator:
         print('generate common player active')
         local_count = 0
         common_players = []
+        pbar = tqdm()
+        pbar.set_description('Common players generating')
         while local_count < count:
             temp_obj = PlayerGenerator()
             player = temp_obj.get_player()
-            with tqdm(total=count) as pbar:
-                pbar.set_description('Common players generating')
-                pbar.update(local_count)
+            pbar.update()
+            #time.sleep(0.1)
+            #with tqdm(total=count) as pbar:
+            #    pbar.set_description('Common players generating')
+            #    pbar.update(local_count)
             if player['overall rarity'][1] == 'common':
                 common_players.append(player)
                 local_count = local_count + 1
@@ -67,12 +73,16 @@ class PlayerGenerator:
         print('generate uncommon player active')
         local_count = 0
         uncommon_players = []
+        pbar = tqdm()
+        pbar.set_description('Uncommon players generating')
         while local_count < count:
             temp_obj = PlayerGenerator()
             player = temp_obj.get_player()
-            with tqdm(total=count) as pbar:
-                pbar.set_description('Uncommon players generating')
-                pbar.update(local_count)
+            pbar.update()
+            #time.sleep(0.1)
+            #with tqdm(total=count) as pbar:
+            #    pbar.set_description('Uncommon players generating')
+            #    pbar.update(local_count)
             if player['overall rarity'][1] == 'uncommon':
                 uncommon_players.append(player)
                 local_count = local_count + 1
@@ -84,12 +94,16 @@ class PlayerGenerator:
         print('generate rare player active')
         local_count = 0
         rare_players = []
+        pbar = tqdm()
+        pbar.set_description('Rare players generating')
         while local_count < count:
             temp_obj = PlayerGenerator()
             player = temp_obj.get_player()
-            with tqdm(total=count) as pbar:
-                pbar.set_description('Rare players generating')
-                pbar.update(local_count)
+            pbar.update()
+            #time.sleep(0.1)
+            #with tqdm(total=count) as pbar:
+            #    pbar.set_description('Rare players generating')
+            #    pbar.update(local_count)
             if player['overall rarity'][1] == 'rare':
                 rare_players.append(player)
                 local_count = local_count + 1
@@ -101,13 +115,16 @@ class PlayerGenerator:
         print('generate legendary player active')
         local_count = 0
         legendary_players = []
+        pbar = tqdm()
+        pbar.set_description('Legendary players generating')
         while local_count < count:
-
-            with tqdm(total=count, leave=True, position=0) as pbar:
-                pbar.set_description('Legendary players generating')
-                pbar.update(local_count)
+            #with tqdm(total=count, leave=True, position=0) as pbar:
+            #    pbar.set_description('Legendary players generating')
+            #    pbar.update(local_count)
             temp_obj = PlayerGenerator()
             player = temp_obj.get_player()
+            pbar.update()
+            #time.sleep(0.1)
             if player['overall rarity'][1] == 'legendary':
                 legendary_players.append(player)
                 local_count = local_count + 1
