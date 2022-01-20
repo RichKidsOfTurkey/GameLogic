@@ -59,3 +59,6 @@ class TeamMaking:
             team_index = team_index + 1
 
         return indexed_teams
+
+# init class
+team_making = TeamMaking()

@@ -1,7 +1,16 @@
+import random
 from tournament.matchmatking_utils import score_comparator, rebound_comparator, steal_comparator, block_comparator, assist_comparator
+from tournament.tournament_utils import grouper
+from gen_team.generate_team import team_making
 
 
 class Tournament:
+    def __init__(self, all_players):
+        self.groups = None
+        self.all_players = all_players
+        self.teams = team_making.generate_teams(self.all_players)
+        self.power_calculated_teams = team_making.calculate_powers(self.teams)
+
 
     @staticmethod
     def match(first_team, second_team):
@@ -35,6 +44,32 @@ class Tournament:
         return out
 
 
+    def create_lobby(self, group_number):
+        print('Create lobby is active')
+        teams = self.teams
+        shuf = random.sample(teams, len(teams))
+        groups = grouper(shuf, group_number)
+        self.groups = groups
+        return groups
+
     @staticmethod
-    def lobby():
-        pass
+    def match_lobby(groups):
+        for lobby in groups:
+            total_team_count = len(lobby)
+            count = 0
+            match = []
+            pair_teams = grouper(lobby, 2)
+            team_numbers = 0
+            for pair in pair_teams:
+                temp = Tournament.match(pair[0], pair[1])
+                match.append(temp)
+            return match
+
+    @staticmethod
+    def extract_winner_teams(played_matches):
+        winner_team_indexes = []
+        return None
+
+
+
+

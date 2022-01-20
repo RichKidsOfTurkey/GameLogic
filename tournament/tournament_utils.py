@@ -1,7 +1,6 @@
 from itertools import zip_longest
 
 
+def grouper(sequence, chunk_size):
+    return list(zip_longest(*[iter(sequence)] * chunk_size))
 
-def grouper(iterable, n, fillvalue=None):
-    args = [iter(iterable)] * n
-    return zip_longest(fillvalue=fillvalue, *args)
