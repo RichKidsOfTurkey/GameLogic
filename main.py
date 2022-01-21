@@ -1,9 +1,13 @@
+import itertools
+import json
+from itertools import permutations
+
 from gen_player.generate_player import PlayerGenerator
 from gen_team.generate_team import TeamMaking
 from tournament.matchmaking import Tournament
 
 
-all_players = PlayerGenerator.player_generator(1600, 1200, 800, 20)
+all_players = PlayerGenerator.player_generator(10, 10, 10, 2)
 # teams = TeamMaking.generate_teams(all_players)
 #
 # power_calculated_teams = TeamMaking.calculate_powers(teams)
@@ -20,6 +24,14 @@ all_players = PlayerGenerator.player_generator(1600, 1200, 800, 20)
 
 
 temp = Tournament(all_players)
-print(temp.create_lobby(2)[0])
+lobby = temp.create_lobby(4)
+pairs = temp.pair_lobby()
+reports = temp.match_lobby()
+temp.get_lobby_scores(reports)
+# print(reports)
+
+
+# with open('storage/match_results.json', 'w') as jsonfile:
+#     json.dump(reports, jsonfile, indent=4)
 
 

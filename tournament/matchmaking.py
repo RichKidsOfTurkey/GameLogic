@@ -1,3 +1,4 @@
+import itertools
 import random
 from tournament.matchmatking_utils import score_comparator, rebound_comparator, steal_comparator, block_comparator, assist_comparator
 from tournament.tournament_utils import grouper
@@ -6,11 +7,12 @@ from gen_team.generate_team import team_making
 
 class Tournament:
     def __init__(self, all_players):
-        self.groups = None
+        self.paired_lobby = None
+        self.pairs = None
+        self.lobby = None
         self.all_players = all_players
         self.teams = team_making.generate_teams(self.all_players)
         self.power_calculated_teams = team_making.calculate_powers(self.teams)
-
 
     @staticmethod
     def match(first_team, second_team):
@@ -43,33 +45,69 @@ class Tournament:
 
         return out
 
-
     def create_lobby(self, group_number):
         print('Create lobby is active')
-        teams = self.teams
+        teams = self.power_calculated_teams
         shuf = random.sample(teams, len(teams))
-        groups = grouper(shuf, group_number)
-        self.groups = groups
-        return groups
+        lobby = grouper(shuf, group_number)
+        out = []
+        lobby_index = 1
+        for i in lobby:
+            temp = {
+                'lobby_index': lobby_index,
+                'lobby': i
+            }
+            lobby_index = lobby_index + 1
+            out.append(temp)
+        self.lobby = out
+        return out
 
-    @staticmethod
-    def match_lobby(groups):
-        for lobby in groups:
-            total_team_count = len(lobby)
-            count = 0
-            match = []
-            pair_teams = grouper(lobby, 2)
-            team_numbers = 0
-            for pair in pair_teams:
-                temp = Tournament.match(pair[0], pair[1])
-                match.append(temp)
-            return match
+    def pair_lobby(self):
+        lobby = []
+        pairs = []
+        out = []
+        count = 0
+        for l in self.lobby:
+            lobby.append(l['lobby'])
+        for group in lobby:
+            for p in itertools.permutations(group, 2):
+                pairs.append(p)
+            temp = {
+                'lobby_index': self.lobby[count]['lobby_index'],
+                'pairs': pairs
+            }
+            out.append(temp)
+            count = count + 1
+        self.paired_lobby = out
+        self.pairs = pairs
+        return pairs
 
-    @staticmethod
-    def extract_winner_teams(played_matches):
-        winner_team_indexes = []
-        return None
+    def match_lobby(self):
+        print('match lobby is active')
+        match_report = []
+        total_match_reports = []
+        match_index = 1
+        for a in self.paired_lobby:
+            pairs = a['pairs']
+            for p in pairs:
+                match = Tournament.match(p[0], p[1])
+                match_report.append(match)
+                temp_out = {
+                    'match_index': match_index,
+                    'lobby_index': a['lobby_index'],
+                    'match_report': match_report
+                }
+                match_index = match_index + 1
+                total_match_reports.append(temp_out)
 
+        return total_match_reports
 
-
-
+    def get_lobby_scores(self, total_match_results):
+        winners_list = []
+        i = 0
+        print(total_match_results[0])
+        for m in total_match_results:
+            print(m[1]['match_report'])
+            i = i + 1
+        # print(winners_list)
+        pass
