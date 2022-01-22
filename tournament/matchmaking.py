@@ -1,7 +1,7 @@
 import itertools
 import random
 from tournament.matchmatking_utils import score_comparator, rebound_comparator, steal_comparator, block_comparator, assist_comparator
-from tournament.tournament_utils import grouper
+from tournament.tournament_utils import grouper, lobby_seperator
 from gen_team.generate_team import team_making
 
 
@@ -104,10 +104,14 @@ class Tournament:
 
     def get_lobby_scores(self, total_match_results):
         winners_list = []
+        count = 0
         i = 0
-        print(total_match_results[0])
-        for m in total_match_results:
-            print(m[1]['match_report'])
-            i = i + 1
-        # print(winners_list)
+        while count < len(total_match_results):
+            lobby_index = total_match_results[count]['lobby_index']
+            while i < len(total_match_results[count]['match_report']):
+                temp = [lobby_index, total_match_results[count]['match_report'][i]['overall winner']]
+                winners_list.append(temp)
+                i = i + 1
+            count = count + 1
+        lobby_seperator(winners_list)
         pass
