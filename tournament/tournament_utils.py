@@ -1,5 +1,4 @@
 from itertools import zip_longest
-from statistics import mode
 
 
 def grouper(sequence, chunk_size):
@@ -10,12 +9,8 @@ def most_frequent(inlist):
     return max(set(inlist), key=inlist.count)
 
 
-def lobby_seperator(winner_team_list):
-    i = 0
-    while i < len(winner_team_list):
-
-        i = i + 1
-    print(winner_team_list)
-    pass
+def split(a, n):
+    k, m = divmod(len(a), n)
+    return (a[i*k+min(i, m):(i+1)*k+min(i+1, m)] for i in range(n))
 
 

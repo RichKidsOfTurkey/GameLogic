@@ -7,7 +7,6 @@ from gen_team.generate_team import TeamMaking
 from tournament.matchmaking import Tournament
 
 
-all_players = PlayerGenerator.player_generator(10, 10, 10, 2)
 # teams = TeamMaking.generate_teams(all_players)
 #
 # power_calculated_teams = TeamMaking.calculate_powers(teams)
@@ -21,16 +20,21 @@ all_players = PlayerGenerator.player_generator(10, 10, 10, 2)
 # match_lobby = Tournament.match_lobby(groups)
 # print(match_lobby)
 # print(len(match_lobby))
-
+all_players = PlayerGenerator.player_generator(10, 10, 10, 2)
 
 temp = Tournament(all_players)
 lobby = temp.create_lobby(4)
 pairs = temp.pair_lobby()
 reports = temp.match_lobby()
-temp.get_lobby_scores(reports)
-# print(reports)
+winners = temp.get_lobby_scores(reports)
+print(len(pairs))
+print(len(reports))
+print(winners)
+max_key = max(winners, key=winners.get)
+min_key = min(winners, key=winners.get)
 
-ex = [[1, 6], [1, 6], [1, 6], [1, 6], [1, 2], [1, 4], [1, 6], [1, 2], [1, 2], [1, 6], [1, 4], [1, 2], [1, 7], [1, 1], [1, 3], [1, 7], [1, 7], [1, 3], [1, 1], [1, 7], [1, 3], [1, 3], [1, 3], [1, 3], [1, 6], [1, 6], [1, 6], [1, 6], [1, 2], [1, 4], [1, 6], [1, 2], [1, 2], [1, 6], [1, 4], [1, 2], [1, 7], [1, 1], [1, 3], [1, 7], [1, 7], [1, 3], [1, 1], [1, 7], [1, 3], [1, 3], [1, 3], [1, 3]]
+print(max_key)
+print(min_key)
 
 # with open('storage/match_results.json', 'w') as jsonfile:
 #     json.dump(reports, jsonfile, indent=4)

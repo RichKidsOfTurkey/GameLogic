@@ -1,8 +1,10 @@
 import itertools
+import json
 import random
 from tournament.matchmatking_utils import score_comparator, rebound_comparator, steal_comparator, block_comparator, assist_comparator
-from tournament.tournament_utils import grouper, lobby_seperator
+from tournament.tournament_utils import grouper, split
 from gen_team.generate_team import team_making
+from collections import Counter
 
 
 class Tournament:
@@ -31,7 +33,9 @@ class Tournament:
         elif second_team_total_points > first_team_total_points:
             winner = second_team['team_index']
         elif first_team_total_points == second_team_total_points:
-            winner = 'there is a tie between ' + f'{first_team["team_index"]}' + ' and ' + f'{second_team["team_index"]}'
+            # TODO disconnected tie situation remember to calculate it
+                winner = 'there is a tie between ' + f'{first_team["team_index"]}' + ' and ' + f'{second_team["team_index"]}'
+            # winner = first_team['team_index']
 
         out = {
             'overall winner': winner,
@@ -91,10 +95,12 @@ class Tournament:
             pairs = a['pairs']
             for p in pairs:
                 match = Tournament.match(p[0], p[1])
+                overall_winner = match['overall winner']
                 match_report.append(match)
                 temp_out = {
                     'match_index': match_index,
                     'lobby_index': a['lobby_index'],
+                    'overall_winner': overall_winner,
                     'match_report': match_report
                 }
                 match_index = match_index + 1
@@ -103,15 +109,21 @@ class Tournament:
         return total_match_reports
 
     def get_lobby_scores(self, total_match_results):
-        winners_list = []
+        lobby_count = len(self.lobby)
+        print('lobby count is---> ', lobby_count)
+        temp_sep_lobbies = split(total_match_results, lobby_count)
+        sep_lobbies = []
+        for a in temp_sep_lobbies:
+            sep_lobbies.append(a)
+        winners = []
         count = 0
-        i = 0
-        while count < len(total_match_results):
-            lobby_index = total_match_results[count]['lobby_index']
-            while i < len(total_match_results[count]['match_report']):
-                temp = [lobby_index, total_match_results[count]['match_report'][i]['overall winner']]
-                winners_list.append(temp)
-                i = i + 1
+        while count < len(sep_lobbies):
+            m = 0
+            while m < len(sep_lobbies[count]):
+                winners.append(sep_lobbies[count][m]['overall_winner'])
+                m = m + 1
             count = count + 1
-        lobby_seperator(winners_list)
-        pass
+        scores = {i: winners.count(i) for i in winners}
+
+
+        return scores
